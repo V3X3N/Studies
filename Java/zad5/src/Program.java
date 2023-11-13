@@ -5,36 +5,55 @@ public class Program {
         System.out.println("-- do zapisu --");
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
-        DowodOsobisty z = new DowodOsobisty(br);
-        z.info();
+        //Tworzenie osoby
+        Osoba osoba = new Osoba(br);
 
-        //Zapisujemy wartosci do pliku
+        //Tworzenie dowodu
+        DowodOsobisty dowodOsobisty = new DowodOsobisty(br, osoba);
+
+        //Tworzenie paszportu
+        Paszport paszport = new Paszport(br, osoba);
+
+        //Wypisywanie
+        dowodOsobisty.info();
+        paszport.info();
+
+        //Zapisywanie do pliku
         try {
-            ObjectOutputStream outp = new ObjectOutputStream(new FileOutputStream("plik.dat"));
-            outp.writeObject(z);
+            ObjectOutputStream outp = new ObjectOutputStream(new FileOutputStream("dane.dat"));
+            outp.writeObject(dowodOsobisty);
+            outp.writeObject(paszport);
             outp.close();
-
-            //Zabezpieczenie przed bledem zapisu
         } catch (IOException e) {
-            System.out.println("Błąd podczas zapisywania do pliku: " + e.getMessage());
+            System.out.println("Błąd podczas zapisywania danych do pliku: " + e.getMessage());
         }
 
         System.out.println("\n-- z pliku --");
         ObjectInputStream inp;
 
-        //Odczytujemy wartosci z pliku i rzutujemy na typ DowodOsobisty
+        //Odczytywanie
         try {
-            inp = new ObjectInputStream(new FileInputStream("plik.dat"));
-            Object o = inp.readObject();
-            DowodOsobisty x = (DowodOsobisty) o;
-            inp.close();
-            x.info();
+            inp = new ObjectInputStream(new FileInputStream("dane.dat"));
 
-            //Zabezpieczamy warunki jak nie ma pliku lub plik nie moze byc odczytany
+            Object o1 = inp.readObject();
+            if (o1 instanceof DowodOsobisty) {
+                DowodOsobisty dowodFromfile = (DowodOsobisty) o1;
+                dowodFromfile.info();
+            }
+
+            Object o2 = inp.readObject();
+            if (o2 instanceof Paszport) {
+                Paszport paszportFromfile = (Paszport) o2;
+                paszportFromfile.info();
+            }
+
+            inp.close();
+
+            //Zabezpieczenia na brak pliku lub brak mozliwosci owtorzenia pliku
         } catch (FileNotFoundException e) {
-            System.out.println("Nie można odnaleźć pliku: " + e.getMessage());
+            System.out.println("Nie można odnaleźć pliku z danymi: " + e.getMessage());
         } catch (IOException | ClassNotFoundException e) {
-            System.out.println("Błąd podczas odczytu z pliku: " + e.getMessage());
+            System.out.println("Błąd podczas odczytu danych z pliku: " + e.getMessage());
         }
     }
 }

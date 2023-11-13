@@ -31,8 +31,16 @@ class Osoba implements Serializable {
         }
     }
 
+    //Wypiswanie w postaci stringa
+    public String toString()
+    {
+        return this.imie+" "+this.nazwisko+" "+this.rokUrodzenia;
+    }
+
     //Zwracamy informacje w postaci tekstu
-    public String toString() {
-        return this.imie + " " + this.nazwisko + " " + this.rokUrodzenia;
+    void info() {
+        System.out.println("Imie: " + imie +
+                "\nNazwisko: " + nazwisko +
+                "\nRok urodzenia: " + rokUrodzenia);
     }
 }

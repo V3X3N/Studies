@@ -6,11 +6,11 @@ class DowodOsobisty implements Serializable {
     String numer;
 
     //Konstruktor Dowodu Osobistego
-    DowodOsobisty(BufferedReader br) {
+    DowodOsobisty(BufferedReader br, Osoba osoba) {
         try {
-            this.posiadacz = new Osoba(br);
+            this.posiadacz = osoba;
 
-            System.out.print("numer do: ");
+            System.out.print("numer dowodu: ");
             this.numer = br.readLine();
         } catch (IOException e) {
             e.printStackTrace();
@@ -19,11 +19,14 @@ class DowodOsobisty implements Serializable {
 
     //Zwracamy dane w postaci stringu
     public String toString() {
-        return "<do:> " + posiadacz.toString() + " " + this.numer;
+        return posiadacz.toString() + " " + this.numer;
     }
 
     //Wypisujemy obiekt klasy
     void info() {
-        System.out.println(this);
+        System.out.println("Imie: " + posiadacz.imie +
+                "\nNazwisko: " + posiadacz.nazwisko +
+                "\nRok urodzenia: " + posiadacz.rokUrodzenia +
+                "\nNumer Dowodu: " + numer);
     }
 }
