@@ -1,20 +1,22 @@
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.Serializable;
-//Biblioteki
 
-class Osoba implements Serializable { //Interfejs znacznikowy, czyli nie zawiera zadnej metody
+//Serializable - Interfejs znacznikowy, czyli nie zawiera zadnej metody
+class Osoba implements Serializable {
     String imie;
     String nazwisko;
     int rokUrodzenia;
 
-    Osoba(String imie, String nazwisko, int rokUrodzenia) { //Tworzymy konstruktor Osoby
+    //Tworzymy konstruktor Osoby
+    Osoba(String imie, String nazwisko, int rokUrodzenia) {
         this.imie = imie;
         this.nazwisko = nazwisko;
         this.rokUrodzenia = rokUrodzenia;
     }
 
-    Osoba(BufferedReader br) { //Konstruktor do czytania danych
+    //Konstruktor do czytania danych
+    Osoba(BufferedReader br) {
         try {
             System.out.print("imie: ");
             this.imie = br.readLine();
@@ -29,6 +31,7 @@ class Osoba implements Serializable { //Interfejs znacznikowy, czyli nie zawiera
         }
     }
 
+    //Zwracamy informacje w postaci tekstu
     public String toString() {
         return this.imie + " " + this.nazwisko + " " + this.rokUrodzenia;
     }

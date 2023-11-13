@@ -8,10 +8,13 @@ public class Program {
         DowodOsobisty z = new DowodOsobisty(br);
         z.info();
 
+        //Zapisujemy wartosci do pliku
         try {
             ObjectOutputStream outp = new ObjectOutputStream(new FileOutputStream("plik.dat"));
             outp.writeObject(z);
             outp.close();
+
+            //Zabezpieczenie przed bledem zapisu
         } catch (IOException e) {
             System.out.println("Błąd podczas zapisywania do pliku: " + e.getMessage());
         }
@@ -19,12 +22,15 @@ public class Program {
         System.out.println("\n-- z pliku --");
         ObjectInputStream inp;
 
+        //Odczytujemy wartosci z pliku i rzutujemy na typ DowodOsobisty
         try {
             inp = new ObjectInputStream(new FileInputStream("plik.dat"));
             Object o = inp.readObject();
             DowodOsobisty x = (DowodOsobisty) o;
             inp.close();
             x.info();
+
+            //Zabezpieczamy warunki jak nie ma pliku lub plik nie moze byc odczytany
         } catch (FileNotFoundException e) {
             System.out.println("Nie można odnaleźć pliku: " + e.getMessage());
         } catch (IOException | ClassNotFoundException e) {
