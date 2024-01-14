@@ -29,6 +29,25 @@ static void zapisz_dane(GtkWidget *widget, gpointer data) {
     lista_ksiazek = g_list_append(lista_ksiazek, nowa_ksiazka);
 }
 
+static void wyswietl_liste(GtkWidget *widget, gpointer data);
+
+static void usun_ksiazke(GtkWidget *widget, gpointer data) {
+    // Pobierz zaznaczony indeks lub element do usunięcia z listy
+    // W poniższym przykładzie zakładam, że data zawiera wskaźnik do GtkWidget, a mamy dostęp do listy_ksiazek globalnie
+
+    // Pobierz indeks do usunięcia (dla przykładu zakładam, że data zawiera wskaźnik do GtkWidget, z którego można pobrać indeks)
+    int indeks_do_usuniecia = GPOINTER_TO_INT(data);
+
+    // Sprawdź, czy indeks jest poprawny
+    if (indeks_do_usuniecia >= 0 && indeks_do_usuniecia < g_list_length(lista_ksiazek)) {
+        // Usuń element z listy
+        lista_ksiazek = g_list_delete_link(lista_ksiazek, g_list_nth(lista_ksiazek, indeks_do_usuniecia));
+
+        // Wyczyszczenie i ponowne wyświetlenie listy
+        wyswietl_liste(NULL, NULL);
+    }
+}
+
 static void wyswietl_liste(GtkWidget *widget, gpointer data) {
     GtkWidget *okno_lista = gtk_application_window_new(GTK_APPLICATION(data));
     gtk_window_set_title(GTK_WINDOW(okno_lista), "Lista Książek");
@@ -40,13 +59,21 @@ static void wyswietl_liste(GtkWidget *widget, gpointer data) {
     gtk_widget_set_margin_bottom(kontener_lista, 10);
 
     GList *iter;
+    int indeks = 0;
     for (iter = lista_ksiazek; iter != NULL; iter = g_list_next(iter)) {
         Ksiazka *ksiazka = (Ksiazka *)iter->data;
         char *info = g_strdup_printf("Imię: %s\nNazwisko: %s\nTytuł: %s\nIlość: %d\nCena: %.2f\n\n",
                                      ksiazka->imie, ksiazka->nazwisko, ksiazka->tytul, ksiazka->ilosc, ksiazka->cena);
         GtkWidget *etykieta_ksiazki = gtk_label_new(info);
         g_free(info);
+
+        // Dodaj przycisk usuwania dla każdej książki
+        GtkWidget *przycisk_usun = gtk_button_new_with_label("Usuń");
+        g_signal_connect(przycisk_usun, "clicked", G_CALLBACK(usun_ksiazke), GINT_TO_POINTER(indeks));
+        gtk_box_append(GTK_BOX(kontener_lista), przycisk_usun);
         gtk_box_append(GTK_BOX(kontener_lista), etykieta_ksiazki);
+
+        indeks++;
     }
 
     gtk_window_set_child(GTK_WINDOW(okno_lista), kontener_lista);
