@@ -1,117 +1,120 @@
 #include <gtk/gtk.h>
 
-static void print_hello(GtkWidget *widget, gpointer data) {
-    g_print("Hello World\n");
+typedef struct {
+    char *imie;
+    char *nazwisko;
+    char *tytul;
+    float cena;
+    int ilosc;
+} Ksiazka;
+
+GList *lista_ksiazek = NULL;
+
+GtkWidget *wprowadzenie[5];
+
+static void zapisz_dane(GtkWidget *widget, gpointer data) {
+    const char *imie = gtk_entry_buffer_get_text(gtk_entry_get_buffer(GTK_ENTRY(wprowadzenie[0])));
+    const char *nazwisko = gtk_entry_buffer_get_text(gtk_entry_get_buffer(GTK_ENTRY(wprowadzenie[1])));
+    const char *tytul = gtk_entry_buffer_get_text(gtk_entry_get_buffer(GTK_ENTRY(wprowadzenie[2])));
+    float cena = atof(gtk_entry_buffer_get_text(gtk_entry_get_buffer(GTK_ENTRY(wprowadzenie[3]))));
+    int ilosc = atoi(gtk_entry_buffer_get_text(gtk_entry_get_buffer(GTK_ENTRY(wprowadzenie[4]))));
+
+    Ksiazka *nowa_ksiazka = g_malloc(sizeof(Ksiazka));
+    nowa_ksiazka->imie = g_strdup(imie);
+    nowa_ksiazka->nazwisko = g_strdup(nazwisko);
+    nowa_ksiazka->tytul = g_strdup(tytul);
+    nowa_ksiazka->cena = cena;
+    nowa_ksiazka->ilosc = ilosc;
+
+    lista_ksiazek = g_list_append(lista_ksiazek, nowa_ksiazka);
 }
 
-static void open_new_window(GtkWidget *widget, gpointer data) {
-    GtkApplication *app = GTK_APPLICATION(data);
+static void wyswietl_liste(GtkWidget *widget, gpointer data) {
+    GtkWidget *okno_lista = gtk_application_window_new(GTK_APPLICATION(data));
+    gtk_window_set_title(GTK_WINDOW(okno_lista), "Lista Książek");
 
-    // Sprawdź, czy to jest przycisk "Zapisz", jeśli tak, to nie otwieraj nowego okna
-    const gchar *button_label = gtk_button_get_label(GTK_BUTTON(widget));
-    if (g_strcmp0(button_label, "Zapisz") == 0) {
-        g_print("Przycisk Zapisz nie otwiera nowego okna\n");
-        return;
+    GtkWidget *kontener_lista = gtk_box_new(GTK_ORIENTATION_VERTICAL, 5);
+    gtk_widget_set_margin_start(kontener_lista, 10);
+    gtk_widget_set_margin_end(kontener_lista, 10);
+    gtk_widget_set_margin_top(kontener_lista, 10);
+    gtk_widget_set_margin_bottom(kontener_lista, 10);
+
+    GList *iter;
+    for (iter = lista_ksiazek; iter != NULL; iter = g_list_next(iter)) {
+        Ksiazka *ksiazka = (Ksiazka *)iter->data;
+        char *info = g_strdup_printf("Imię: %s\nNazwisko: %s\nTytuł: %s\nIlość: %d\nCena: %.2f\n\n",
+                                     ksiazka->imie, ksiazka->nazwisko, ksiazka->tytul, ksiazka->ilosc, ksiazka->cena);
+        GtkWidget *etykieta_ksiazki = gtk_label_new(info);
+        g_free(info);
+        gtk_box_append(GTK_BOX(kontener_lista), etykieta_ksiazki);
     }
 
-    // Utwórz nowe okno i ustaw jego tytuł
-    GtkWidget *new_window = gtk_application_window_new(app);
-    gtk_window_set_title(GTK_WINDOW(new_window), "Nowe Okno");
-
-    // Utwórz kontener
-    GtkWidget *new_grid = gtk_grid_new();
-    gtk_grid_set_row_homogeneous(GTK_GRID(new_grid), TRUE);
-    gtk_grid_set_column_homogeneous(GTK_GRID(new_grid), TRUE);
-
-    // Dodaj etykietę do nowego okna
-    GtkWidget *label = gtk_label_new("To jest nowe okno!");
-    gtk_widget_set_hexpand(label, TRUE);
-    gtk_grid_attach(GTK_GRID(new_grid), label, 0, 0, 1, 1);
-
-    gtk_window_set_child(GTK_WINDOW(new_window), new_grid);
-    gtk_window_present(GTK_WINDOW(new_window));
+    gtk_window_set_child(GTK_WINDOW(okno_lista), kontener_lista);
+    gtk_window_present(GTK_WINDOW(okno_lista));
 }
 
-static void save_data(GtkWidget *widget, gpointer data) {
-    GtkEntryBuffer **buffers = (GtkEntryBuffer **)data;
+static void aktywuj(GtkApplication *app, gpointer user_data) {
+    GtkWidget *okno;
+    GtkWidget *siatka;
+    GtkWidget *przycisk;
+    GtkWidget *etykieta[5];
+    GtkEntryBuffer *bufor[5];
 
-    const gchar *imie = gtk_entry_buffer_get_text(buffers[0]);
-    const gchar *nazwisko = gtk_entry_buffer_get_text(buffers[1]);
-    const gchar *tytul = gtk_entry_buffer_get_text(buffers[2]);
-    const gchar *cena = gtk_entry_buffer_get_text(buffers[3]);
+    okno = gtk_application_window_new(app);
+    gtk_window_set_title(GTK_WINDOW(okno), "Okno");
 
-    g_print("Zapisano dane:\n");
-    g_print("Imię: %s\n", imie);
-    g_print("Nazwisko: %s\n", nazwisko);
-    g_print("Tytuł Książki: %s\n", tytul);
-    g_print("Cena: %s\n", cena);
-}
+    siatka = gtk_grid_new();
+    gtk_grid_set_row_homogeneous(GTK_GRID(siatka), TRUE);
+    gtk_grid_set_column_homogeneous(GTK_GRID(siatka), TRUE);
 
-static void activate(GtkApplication *app, gpointer user_data) {
-    GtkWidget *window;
-    GtkWidget *grid;
-    GtkWidget *button;
-    GtkWidget *emptyLabel;
-    GtkWidget *entry[4];
-    GtkWidget *label[4];
-    GtkEntryBuffer *buffer[4];
+    gtk_window_set_child(GTK_WINDOW(okno), siatka);
 
-    window = gtk_application_window_new(app);
-    gtk_window_set_title(GTK_WINDOW(window), "Okno");
+    for (int i = 0; i < 5; i++) {
+        bufor[i] = gtk_entry_buffer_new(NULL, 0);
+        wprowadzenie[i] = gtk_entry_new_with_buffer(bufor[i]);
+        gtk_widget_set_hexpand(wprowadzenie[i], TRUE);
+        gtk_grid_attach(GTK_GRID(siatka), wprowadzenie[i], 1, i, 1, 1);
 
-    grid = gtk_grid_new();
-    gtk_grid_set_row_homogeneous(GTK_GRID(grid), TRUE);
-    gtk_grid_set_column_homogeneous(GTK_GRID(grid), TRUE);
-
-    gtk_window_set_child(GTK_WINDOW(window), grid);
-
-    for (int i = 0; i < 4; i++) {
-        buffer[i] = gtk_entry_buffer_new(NULL, 0);
-        entry[i] = gtk_entry_new_with_buffer(buffer[i]);
-        gtk_widget_set_hexpand(entry[i], TRUE);
-        gtk_grid_attach(GTK_GRID(grid), entry[i], 1, i, 1, 1);
-
-        label[i] = gtk_label_new(NULL);
-        const char *label_texts[] = {"Imię", "Nazwisko", "Tytuł Książki", "Cena"};
-        gtk_label_set_text(GTK_LABEL(label[i]), label_texts[i]);
-        gtk_grid_attach(GTK_GRID(grid), label[i], 0, i, 1, 1);
+        etykieta[i] = gtk_label_new(NULL);
+        const char *teksty_etykiet[] = {"Imię", "Nazwisko", "Tytuł", "Cena", "Ilość"};
+        gtk_label_set_text(GTK_LABEL(etykieta[i]), teksty_etykiet[i]);
+        gtk_grid_attach(GTK_GRID(siatka), etykieta[i], 0, i, 1, 1);
     }
 
-    button = gtk_button_new_with_label("Zapisz");
-    g_signal_connect(button, "clicked", G_CALLBACK(save_data), buffer);
-    gtk_widget_set_hexpand(button, TRUE);
-    gtk_grid_attach(GTK_GRID(grid), button, 0, 4, 2, 1);
+    przycisk = gtk_button_new_with_label("Zapisz");
+    g_signal_connect(przycisk, "clicked", G_CALLBACK(zapisz_dane), NULL);
+    gtk_widget_set_hexpand(przycisk, TRUE);
+    gtk_grid_attach(GTK_GRID(siatka), przycisk, 0, 5, 2, 1);
 
-    button = gtk_button_new_with_label("Przycisk 2");
-    g_signal_connect(button, "clicked", G_CALLBACK(open_new_window), app);
-    gtk_widget_set_hexpand(button, TRUE);
-    gtk_grid_attach(GTK_GRID(grid), button, 0, 5, 2, 1);
+    przycisk = gtk_button_new_with_label("Wyświetl Listę");
+    g_signal_connect(przycisk, "clicked", G_CALLBACK(wyswietl_liste), app);
+    gtk_widget_set_hexpand(przycisk, TRUE);
+    gtk_grid_attach(GTK_GRID(siatka), przycisk, 0, 6, 2, 1);
 
-    button = gtk_button_new_with_label("Przycisk 3");
-    g_signal_connect(button, "clicked", G_CALLBACK(open_new_window), app);
-    gtk_widget_set_hexpand(button, TRUE);
-    gtk_grid_attach(GTK_GRID(grid), button, 0, 6, 2, 1);
+    przycisk = gtk_button_new_with_label("Przycisk 3");
+    gtk_widget_set_hexpand(przycisk, TRUE);
+    gtk_grid_attach(GTK_GRID(siatka), przycisk, 0, 7, 2, 1);
 
-    emptyLabel = gtk_label_new("");
-    gtk_widget_set_hexpand(emptyLabel, TRUE);
-    gtk_grid_attach(GTK_GRID(grid), emptyLabel, 0, 7, 2, 1);
+    GtkWidget *pusta_etykieta = gtk_label_new("");
+    gtk_widget_set_hexpand(pusta_etykieta, TRUE);
+    gtk_grid_attach(GTK_GRID(siatka), pusta_etykieta, 0, 8, 2, 1);
 
-    button = gtk_button_new_with_label("Quit");
-    g_signal_connect_swapped(button, "clicked", G_CALLBACK(gtk_window_destroy), window);
-    gtk_widget_set_hexpand(button, TRUE);
-    gtk_grid_attach(GTK_GRID(grid), button, 0, 8, 2, 1);
+    przycisk = gtk_button_new_with_label("Quit");
+    g_signal_connect_swapped(przycisk, "clicked", G_CALLBACK(gtk_window_destroy), okno);
+    gtk_widget_set_hexpand(przycisk, TRUE);
+    gtk_grid_attach(GTK_GRID(siatka), przycisk, 0, 9, 2, 1);
 
-    gtk_window_present(GTK_WINDOW(window));
+    gtk_window_present(GTK_WINDOW(okno));
 }
 
 int main(int argc, char **argv) {
-    GtkApplication *app;
+    GtkApplication *aplikacja;
     int status;
 
-    app = gtk_application_new("org.gtk.example", G_APPLICATION_DEFAULT_FLAGS);
-    g_signal_connect(app, "activate", G_CALLBACK(activate), NULL);
-    status = g_application_run(G_APPLICATION(app), argc, argv);
-    g_object_unref(app);
+    aplikacja = gtk_application_new("org.gtk.przyklad", G_APPLICATION_DEFAULT_FLAGS);
+    g_signal_connect(aplikacja, "activate", G_CALLBACK(aktywuj), NULL);
+    status = g_application_run(G_APPLICATION(aplikacja), argc, argv);
+    g_object_unref(aplikacja);
 
     return status;
 }
