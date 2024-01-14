@@ -56,10 +56,10 @@ RM = "C:\Program Files\CMake\bin\cmake.exe" -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = C:\Coding\C\GTK-project
+CMAKE_SOURCE_DIR = C:\Coding\Studies\C\GTK-project
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = C:\Coding\C\GTK-project\build
+CMAKE_BINARY_DIR = C:\Coding\Studies\C\GTK-project\build
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -86,9 +86,9 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start C:\Coding\C\GTK-project\build\CMakeFiles C:\Coding\C\GTK-project\build\\CMakeFiles\progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start C:\Coding\Studies\C\GTK-project\build\CMakeFiles C:\Coding\Studies\C\GTK-project\build\\CMakeFiles\progress.marks
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start C:\Coding\C\GTK-project\build\CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start C:\Coding\Studies\C\GTK-project\build\CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -116,24 +116,24 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named GTKProjectApp
+# Target rules for targets named GTKProject
 
 # Build rule for target.
-GTKProjectApp: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 GTKProjectApp
-.PHONY : GTKProjectApp
+GTKProject: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 GTKProject
+.PHONY : GTKProject
 
 # fast build rule for target.
-GTKProjectApp/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\GTKProjectApp.dir\build.make CMakeFiles/GTKProjectApp.dir/build
-.PHONY : GTKProjectApp/fast
+GTKProject/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\GTKProject.dir\build.make CMakeFiles/GTKProject.dir/build
+.PHONY : GTKProject/fast
 
 main.obj: main.c.obj
 .PHONY : main.obj
 
 # target to build an object file
 main.c.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\GTKProjectApp.dir\build.make CMakeFiles/GTKProjectApp.dir/main.c.obj
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\GTKProject.dir\build.make CMakeFiles/GTKProject.dir/main.c.obj
 .PHONY : main.c.obj
 
 main.i: main.c.i
@@ -141,7 +141,7 @@ main.i: main.c.i
 
 # target to preprocess a source file
 main.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\GTKProjectApp.dir\build.make CMakeFiles/GTKProjectApp.dir/main.c.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\GTKProject.dir\build.make CMakeFiles/GTKProject.dir/main.c.i
 .PHONY : main.c.i
 
 main.s: main.c.s
@@ -149,7 +149,7 @@ main.s: main.c.s
 
 # target to generate assembly for a file
 main.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\GTKProjectApp.dir\build.make CMakeFiles/GTKProjectApp.dir/main.c.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\GTKProject.dir\build.make CMakeFiles/GTKProject.dir/main.c.s
 .PHONY : main.c.s
 
 # Help Target
@@ -160,7 +160,7 @@ help:
 	@echo ... depend
 	@echo ... edit_cache
 	@echo ... rebuild_cache
-	@echo ... GTKProjectApp
+	@echo ... GTKProject
 	@echo ... main.obj
 	@echo ... main.i
 	@echo ... main.s

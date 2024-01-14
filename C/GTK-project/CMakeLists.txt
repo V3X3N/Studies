@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.5)
-project(GTKProject)
+project(GTKLibrary)
 
 set(CMAKE_C_STANDARD 11)
 set(CMAKE_CXX_STANDARD 17)
@@ -15,6 +15,6 @@ include_directories(${GTK4_INCLUDE_DIRS})
 link_directories(${GTK4_LIBRARY_DIRS})
 add_definitions(${GTK4_CFLAGS_OTHER})
 
-add_executable(GTKProjectApp main.c)
-set_target_properties(GTKProjectApp PROPERTIES WIN32_EXECUTABLE true)  # If you dont want console to run with your .exe
-target_link_libraries(GTKProjectApp ${GTK4_LIBRARIES})
+add_executable(GTKProject main.c)
+set_target_properties(GTKProject PROPERTIES WIN32_EXECUTABLE true)  # If you dont want console to run with your .exe
+target_link_libraries(GTKProject ${GTK4_LIBRARIES})

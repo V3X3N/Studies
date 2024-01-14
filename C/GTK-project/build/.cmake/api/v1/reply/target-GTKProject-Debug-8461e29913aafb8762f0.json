@@ -2,10 +2,10 @@
 	"artifacts" : 
 	[
 		{
-			"path" : "GTKProjectApp.exe"
+			"path" : "GTKProject.exe"
 		},
 		{
-			"path" : "GTKProjectApp.pdb"
+			"path" : "GTKProject.pdb"
 		}
 	],
 	"backtrace" : 1,
@@ -143,7 +143,7 @@
 			]
 		}
 	],
-	"id" : "GTKProjectApp::@6890427a1f51a3e7e1df",
+	"id" : "GTKProject::@6890427a1f51a3e7e1df",
 	"link" : 
 	{
 		"commandFragments" : 
@@ -228,8 +228,8 @@
 		],
 		"language" : "C"
 	},
-	"name" : "GTKProjectApp",
-	"nameOnDisk" : "GTKProjectApp.exe",
+	"name" : "GTKProject",
+	"nameOnDisk" : "GTKProject.exe",
 	"paths" : 
 	{
 		"build" : ".",

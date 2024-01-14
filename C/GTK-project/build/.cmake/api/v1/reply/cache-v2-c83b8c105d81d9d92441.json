@@ -55,7 +55,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "c:/Coding/C/GTK-project/build"
+			"value" : "c:/Coding/Studies/C/GTK-project/build"
 		},
 		{
 			"name" : "CMAKE_CACHE_MAJOR_VERSION",
@@ -587,7 +587,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "C:/Coding/C/GTK-project/build/CMakeFiles/pkgRedirects"
+			"value" : "C:/Coding/Studies/C/GTK-project/build/CMakeFiles/pkgRedirects"
 		},
 		{
 			"name" : "CMAKE_GENERATOR",
@@ -659,7 +659,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "C:/Coding/C/GTK-project"
+			"value" : "C:/Coding/Studies/C/GTK-project"
 		},
 		{
 			"name" : "CMAKE_INSTALL_PREFIX",
@@ -671,7 +671,7 @@
 				}
 			],
 			"type" : "PATH",
-			"value" : "C:/Program Files (x86)/GTKTutorial"
+			"value" : "C:/Program Files (x86)/GTKLibrary"
 		},
 		{
 			"name" : "CMAKE_LINKER",
@@ -891,7 +891,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "GTKProject"
+			"value" : "GTKLibrary"
 		},
 		{
 			"name" : "CMAKE_RANLIB",
@@ -1718,7 +1718,7 @@
 			"value" : ""
 		},
 		{
-			"name" : "GTKProject_BINARY_DIR",
+			"name" : "GTKLibrary_BINARY_DIR",
 			"properties" : 
 			[
 				{
@@ -1727,10 +1727,10 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "C:/Coding/C/GTK-project/build"
+			"value" : "C:/Coding/Studies/C/GTK-project/build"
 		},
 		{
-			"name" : "GTKProject_IS_TOP_LEVEL",
+			"name" : "GTKLibrary_IS_TOP_LEVEL",
 			"properties" : 
 			[
 				{
@@ -1742,7 +1742,7 @@
 			"value" : "ON"
 		},
 		{
-			"name" : "GTKProject_SOURCE_DIR",
+			"name" : "GTKLibrary_SOURCE_DIR",
 			"properties" : 
 			[
 				{
@@ -1751,43 +1751,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "C:/Coding/C/GTK-project"
-		},
-		{
-			"name" : "GTKTutorial_BINARY_DIR",
-			"properties" : 
-			[
-				{
-					"name" : "HELPSTRING",
-					"value" : "Value Computed by CMake"
-				}
-			],
-			"type" : "STATIC",
-			"value" : "C:/Coding/C/GTK-project/build"
-		},
-		{
-			"name" : "GTKTutorial_IS_TOP_LEVEL",
-			"properties" : 
-			[
-				{
-					"name" : "HELPSTRING",
-					"value" : "Value Computed by CMake"
-				}
-			],
-			"type" : "STATIC",
-			"value" : "ON"
-		},
-		{
-			"name" : "GTKTutorial_SOURCE_DIR",
-			"properties" : 
-			[
-				{
-					"name" : "HELPSTRING",
-					"value" : "Value Computed by CMake"
-				}
-			],
-			"type" : "STATIC",
-			"value" : "C:/Coding/C/GTK-project"
+			"value" : "C:/Coding/Studies/C/GTK-project"
 		},
 		{
 			"name" : "PKG_CONFIG_ARGN",

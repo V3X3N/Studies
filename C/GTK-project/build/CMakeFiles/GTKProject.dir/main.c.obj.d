@@ -1,4 +1,5 @@
-CMakeFiles/TutorialApp.dir/main.c.obj: C:\Coding\C\GTK-project\main.c \
+CMakeFiles/GTKProject.dir/main.c.obj: \
+ C:\Coding\Studies\C\GTK-project\main.c \
  C:/msys64/mingw64/include/gtk-4.0/gtk/gtk.h \
  C:/msys64/mingw64/include/gtk-4.0/gtk/css/gtkcss.h \
  C:/msys64/mingw64/include/glib-2.0/glib.h \

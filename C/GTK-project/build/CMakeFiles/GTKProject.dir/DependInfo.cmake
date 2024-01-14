@@ -8,7 +8,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
-  "C:/Coding/C/GTK-project/main.c" "CMakeFiles/GTKProjectApp.dir/main.c.obj" "gcc" "CMakeFiles/GTKProjectApp.dir/main.c.obj.d"
+  "C:/Coding/Studies/C/GTK-project/main.c" "CMakeFiles/GTKProject.dir/main.c.obj" "gcc" "CMakeFiles/GTKProject.dir/main.c.obj.d"
   )
 
 # Targets to which this target links which contain Fortran sources.
