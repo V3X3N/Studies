@@ -1,0 +1,3 @@
+"C:\Program Files\CMake\bin\cmake.exe" -E rm -f CMakeFiles\GTKProjectApp.dir/objects.a
+C:\msys64\mingw64\bin\ar.exe qc CMakeFiles\GTKProjectApp.dir/objects.a @CMakeFiles\GTKProjectApp.dir\objects1.rsp
+C:\msys64\mingw64\bin\gcc.exe -g -mwindows -Wl,--whole-archive CMakeFiles\GTKProjectApp.dir/objects.a -Wl,--no-whole-archive -o GTKProjectApp.exe -Wl,--out-implib,libGTKProjectApp.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles\GTKProjectApp.dir\linkLibs.rsp
