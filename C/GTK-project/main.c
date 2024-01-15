@@ -11,6 +11,7 @@ typedef struct {
 GList *lista_ksiazek = NULL;
 
 GtkWidget *wprowadzenie[5];
+GtkWidget *wyniki_etykieta;
 
 static void zapisz_dane(GtkWidget *widget, gpointer data) {
     const char *imie = gtk_entry_buffer_get_text(gtk_entry_get_buffer(GTK_ENTRY(wprowadzenie[0])));
@@ -29,16 +30,7 @@ static void zapisz_dane(GtkWidget *widget, gpointer data) {
     lista_ksiazek = g_list_append(lista_ksiazek, nowa_ksiazka);
 }
 
-static void wyswietl_liste(GtkWidget *widget, gpointer data);
-
-static void usun_ksiazke(GtkWidget *widget, gpointer data) {
-    int indeks_do_usuniecia = GPOINTER_TO_INT(data);
-
-    if (indeks_do_usuniecia >= 0 && indeks_do_usuniecia < g_list_length(lista_ksiazek)) {
-        lista_ksiazek = g_list_delete_link(lista_ksiazek, g_list_nth(lista_ksiazek, indeks_do_usuniecia));
-        wyswietl_liste(NULL, NULL);
-    }
-}
+static void usun_ksiazke(GtkWidget *widget, gpointer data);
 
 static void wyswietl_liste(GtkWidget *widget, gpointer data) {
     GtkWidget *okno_lista = gtk_application_window_new(GTK_APPLICATION(data));
@@ -71,6 +63,15 @@ static void wyswietl_liste(GtkWidget *widget, gpointer data) {
     gtk_window_present(GTK_WINDOW(okno_lista));
 }
 
+static void usun_ksiazke(GtkWidget *widget, gpointer data) {
+    int indeks_do_usuniecia = GPOINTER_TO_INT(data);
+
+    if (indeks_do_usuniecia >= 0 && indeks_do_usuniecia < g_list_length(lista_ksiazek)) {
+        lista_ksiazek = g_list_delete_link(lista_ksiazek, g_list_nth(lista_ksiazek, indeks_do_usuniecia));
+        wyswietl_liste(NULL, NULL);
+    }
+}
+
 static void nowe_okno(GtkWidget *widget, gpointer data) {
     GtkWidget *okno_nowe = gtk_application_window_new(GTK_APPLICATION(data));
     gtk_window_set_title(GTK_WINDOW(okno_nowe), "Nowe Okno");
@@ -83,6 +84,49 @@ static void nowe_okno(GtkWidget *widget, gpointer data) {
 
     gtk_window_set_child(GTK_WINDOW(okno_nowe), etykieta_nowa);
     gtk_window_present(GTK_WINDOW(okno_nowe));
+}
+
+static void szukaj_ksiazki(GtkWidget *widget, gpointer data) {
+    const char *szukane_imie = gtk_entry_buffer_get_text(gtk_entry_get_buffer(GTK_ENTRY(wprowadzenie[0])));
+    const char *szukane_nazwisko = gtk_entry_buffer_get_text(gtk_entry_get_buffer(GTK_ENTRY(wprowadzenie[1])));
+    const char *szukany_tytul = gtk_entry_buffer_get_text(gtk_entry_get_buffer(GTK_ENTRY(wprowadzenie[2])));
+
+    GList *iter;
+    for (iter = lista_ksiazek; iter != NULL; iter = g_list_next(iter)) {
+        Ksiazka *ksiazka = (Ksiazka *)iter->data;
+        if (g_strcmp0(ksiazka->imie, szukane_imie) == 0 &&
+            g_strcmp0(ksiazka->nazwisko, szukane_nazwisko) == 0 &&
+            g_strcmp0(ksiazka->tytul, szukany_tytul) == 0) {
+            GtkWidget *okno_wyniku = gtk_application_window_new(GTK_APPLICATION(data));
+            gtk_window_set_title(GTK_WINDOW(okno_wyniku), "Wynik wyszukiwania");
+
+            char *info = g_strdup_printf("Imię: %s\nNazwisko: %s\nTytuł: %s\nIlość: %d\nCena: %.2f\n",
+                                         ksiazka->imie, ksiazka->nazwisko, ksiazka->tytul, ksiazka->ilosc, ksiazka->cena);
+            wyniki_etykieta = gtk_label_new(info);
+            g_free(info);
+
+            gtk_widget_set_margin_start(wyniki_etykieta, 10);
+            gtk_widget_set_margin_end(wyniki_etykieta, 10);
+            gtk_widget_set_margin_top(wyniki_etykieta, 10);
+            gtk_widget_set_margin_bottom(wyniki_etykieta, 10);
+
+            gtk_window_set_child(GTK_WINDOW(okno_wyniku), wyniki_etykieta);
+            gtk_window_present(GTK_WINDOW(okno_wyniku));
+            return;
+        }
+    }
+
+    GtkWidget *okno_braku_wyniku = gtk_application_window_new(GTK_APPLICATION(data));
+    gtk_window_set_title(GTK_WINDOW(okno_braku_wyniku), "Brak wyniku wyszukiwania");
+
+    GtkWidget *brak_wyniku_etykieta = gtk_label_new("Nie znaleziono pasującej książki.");
+    gtk_widget_set_margin_start(brak_wyniku_etykieta, 10);
+    gtk_widget_set_margin_end(brak_wyniku_etykieta, 10);
+    gtk_widget_set_margin_top(brak_wyniku_etykieta, 10);
+    gtk_widget_set_margin_bottom(brak_wyniku_etykieta, 10);
+
+    gtk_window_set_child(GTK_WINDOW(okno_braku_wyniku), brak_wyniku_etykieta);
+    gtk_window_present(GTK_WINDOW(okno_braku_wyniku));
 }
 
 static void aktywuj(GtkApplication *app, gpointer user_data) {
@@ -124,7 +168,7 @@ static void aktywuj(GtkApplication *app, gpointer user_data) {
     gtk_grid_attach(GTK_GRID(siatka), przycisk, 0, 6, 2, 1);
 
     przycisk = gtk_button_new_with_label("Przycisk 3");
-    g_signal_connect(przycisk, "clicked", G_CALLBACK(nowe_okno), app);
+    g_signal_connect(przycisk, "clicked", G_CALLBACK(szukaj_ksiazki), app);
     gtk_widget_set_hexpand(przycisk, TRUE);
     gtk_grid_attach(GTK_GRID(siatka), przycisk, 0, 7, 2, 1);
 
