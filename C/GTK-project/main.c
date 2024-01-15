@@ -32,18 +32,10 @@ static void zapisz_dane(GtkWidget *widget, gpointer data) {
 static void wyswietl_liste(GtkWidget *widget, gpointer data);
 
 static void usun_ksiazke(GtkWidget *widget, gpointer data) {
-    // Pobierz zaznaczony indeks lub element do usunięcia z listy
-    // W poniższym przykładzie zakładam, że data zawiera wskaźnik do GtkWidget, a mamy dostęp do listy_ksiazek globalnie
-
-    // Pobierz indeks do usunięcia (dla przykładu zakładam, że data zawiera wskaźnik do GtkWidget, z którego można pobrać indeks)
     int indeks_do_usuniecia = GPOINTER_TO_INT(data);
 
-    // Sprawdź, czy indeks jest poprawny
     if (indeks_do_usuniecia >= 0 && indeks_do_usuniecia < g_list_length(lista_ksiazek)) {
-        // Usuń element z listy
         lista_ksiazek = g_list_delete_link(lista_ksiazek, g_list_nth(lista_ksiazek, indeks_do_usuniecia));
-
-        // Wyczyszczenie i ponowne wyświetlenie listy
         wyswietl_liste(NULL, NULL);
     }
 }
@@ -67,7 +59,6 @@ static void wyswietl_liste(GtkWidget *widget, gpointer data) {
         GtkWidget *etykieta_ksiazki = gtk_label_new(info);
         g_free(info);
 
-        // Dodaj przycisk usuwania dla każdej książki
         GtkWidget *przycisk_usun = gtk_button_new_with_label("Usuń");
         g_signal_connect(przycisk_usun, "clicked", G_CALLBACK(usun_ksiazke), GINT_TO_POINTER(indeks));
         gtk_box_append(GTK_BOX(kontener_lista), przycisk_usun);
@@ -78,6 +69,20 @@ static void wyswietl_liste(GtkWidget *widget, gpointer data) {
 
     gtk_window_set_child(GTK_WINDOW(okno_lista), kontener_lista);
     gtk_window_present(GTK_WINDOW(okno_lista));
+}
+
+static void nowe_okno(GtkWidget *widget, gpointer data) {
+    GtkWidget *okno_nowe = gtk_application_window_new(GTK_APPLICATION(data));
+    gtk_window_set_title(GTK_WINDOW(okno_nowe), "Nowe Okno");
+
+    GtkWidget *etykieta_nowa = gtk_label_new("To jest nowe okno!");
+    gtk_widget_set_margin_start(etykieta_nowa, 10);
+    gtk_widget_set_margin_end(etykieta_nowa, 10);
+    gtk_widget_set_margin_top(etykieta_nowa, 10);
+    gtk_widget_set_margin_bottom(etykieta_nowa, 10);
+
+    gtk_window_set_child(GTK_WINDOW(okno_nowe), etykieta_nowa);
+    gtk_window_present(GTK_WINDOW(okno_nowe));
 }
 
 static void aktywuj(GtkApplication *app, gpointer user_data) {
@@ -119,6 +124,7 @@ static void aktywuj(GtkApplication *app, gpointer user_data) {
     gtk_grid_attach(GTK_GRID(siatka), przycisk, 0, 6, 2, 1);
 
     przycisk = gtk_button_new_with_label("Przycisk 3");
+    g_signal_connect(przycisk, "clicked", G_CALLBACK(nowe_okno), app);
     gtk_widget_set_hexpand(przycisk, TRUE);
     gtk_grid_attach(GTK_GRID(siatka), przycisk, 0, 7, 2, 1);
 
