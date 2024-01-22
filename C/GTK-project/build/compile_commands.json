@@ -1,8 +1,0 @@
-[
-{
-  "directory": "C:/Coding/Studies/C/GTK-project/build",
-  "command": "C:\\msys64\\mingw64\\bin\\gcc.exe -DLIBDEFLATE_DLL @CMakeFiles/GTKProject.dir/includes_C.rsp -g -std=gnu11   -mfpmath=sse -msse -msse2 -o CMakeFiles\\GTKProject.dir\\main.c.obj -c C:\\Coding\\Studies\\C\\GTK-project\\main.c",
-  "file": "C:/Coding/Studies/C/GTK-project/main.c",
-  "output": "CMakeFiles/GTKProject.dir/main.c.obj"
-}
-]
