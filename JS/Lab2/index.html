@@ -1,0 +1,95 @@
+<!DOCTYPE HTML>
+<HTML>
+<HEAD>
+    <meta charset="UTF-8">
+    <title>Benchmark Form</title>
+</HEAD>
+<BODY style="background-color:#191919; color:#e6e6e6;">
+    <h1>Benchmark Form</h1>
+    <form id="benchmarkForm">
+        <label for="numberOfFields">Number of Fields:</label>
+        <input type="number" id="numberOfFields" name="numberOfFields" value="1">
+        <button type="button" onclick="runBenchmark()">Run Benchmark</button>
+    </form>
+    <div id="benchmarkResults"></div>
+    <table id="resultsTable">
+        <thead>
+            <tr>
+                <th>Action</th>
+                <th>Time (ms)</th>
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+
+    <script>
+        function runBenchmark() {
+            var numberOfFields = parseInt(document.getElementById("numberOfFields").value);
+            var resultsTable = document.getElementById("resultsTable").getElementsByTagName('tbody')[0];
+            resultsTable.innerHTML = "";
+
+            var startTime, endTime;
+
+            // Create fields
+            startTime = performance.now();
+            var container = createFields(numberOfFields);
+            endTime = performance.now();
+            addResultToTable("Creating fields", endTime - startTime);
+
+            // Write values
+            startTime = performance.now();
+            writeValues(container, numberOfFields);
+            endTime = performance.now();
+            addResultToTable("Writing values", endTime - startTime);
+
+            // Read values
+            startTime = performance.now();
+            readValues(container, numberOfFields);
+            endTime = performance.now();
+            addResultToTable("Reading values", endTime - startTime);
+
+            // Clear fields
+            startTime = performance.now();
+            clearFields(container);
+            endTime = performance.now();
+            addResultToTable("Clearing fields", endTime - startTime);
+
+            function createFields(numberOfFields) {
+                var container = document.createElement('div');
+                for (var i = 0; i < numberOfFields; i++) {
+                    var input = document.createElement("input");
+                    input.type = "text";
+                    input.name = "field" + i;
+                    container.appendChild(input);
+                }
+                return container;
+            }
+
+            function writeValues(container, numberOfFields) {
+                for (var i = 0; i < numberOfFields; i++) {
+                    container.querySelector("[name='field" + i + "']").value = "Value " + i;
+                }
+            }
+
+            function readValues(container, numberOfFields) {
+                for (var i = 0; i < numberOfFields; i++) {
+                    var value = container.querySelector("[name='field" + i + "']").value;
+                }
+            }
+
+            function clearFields(container) {
+                container.innerHTML = "";
+            }
+
+            function addResultToTable(action, time) {
+                var row = resultsTable.insertRow();
+                var cell1 = row.insertCell(0);
+                var cell2 = row.insertCell(1);
+                cell1.innerHTML = action;
+                cell2.innerHTML = time.toFixed(2);
+            }
+        }
+    </script>
+</BODY>
+</HTML>
