@@ -1,37 +1,37 @@
 # Currency Converter
 
-## Opis
-Projekt "Currency Converter" to prosty kalkulator umożliwiający przeliczanie kwoty z polskich złotych (PLN) na trzy inne waluty: amerykański dolar (USD), euro (EUR) oraz funt brytyjski (GBP). Program pozwala użytkownikowi wybrać docelową walutę i wprowadzić kwotę w PLN, a następnie dokonuje przeliczenia według aktualnych kursów.
+## Description
+The "Currency Converter" project is a simple calculator that allows converting an amount from Polish złoty (PLN) to three other currencies: US dollar (USD), euro (EUR), and British pound (GBP). The program enables the user to select the target currency, enter the amount in PLN, and then performs the conversion based on current exchange rates.
 
-## Klasy
+## Classes
 
 ### CurrencyConverter
-Główna klasa projektu, zawierająca metodę `main`, która obsługuje interakcję z użytkownikiem i przeliczenia walut. 
+The main class of the project, containing the `main` method, which handles user interaction and currency conversion logic.
 
-Metody:
-- `main(String[] args)`: Punkt wejścia programu, obsługujący logikę przeliczeń.
+Methods:
+- `main(String[] args)`: Entry point of the program, handling conversion logic.
 
-### Opis klas w projekcie:
-Brak dodatkowych klas w tym projekcie. Logika przeliczeń jest zawarta bezpośrednio w klasie `CurrencyConverter`.
+### Description of Classes in the Project:
+There are no additional classes in this project. The conversion logic is directly implemented in the `CurrencyConverter` class.
 
-## Instrukcja Użycia
-1. Uruchom program.
-2. Wybierz docelową walutę, wpisując numer odpowiadający wybranej opcji.
-3. Podaj kwotę w polskich złotych (PLN) do przeliczenia.
-4. Program wyświetli przeliczoną kwotę w wybranej walucie.
+## Usage Instructions
+1. Run the program.
+2. Choose the target currency by entering the corresponding number.
+3. Enter the amount in Polish złoty (PLN) to convert.
+4. The program will display the converted amount in the chosen currency.
 
-Przykład:
+Example:
 ```
-Wybierz walutę:
-1. USD (Dolar amerykański)
+Choose the currency:
+1. USD (US Dollar)
 2. EUR (Euro)
-3. GBP (Funt brytyjski)
-Twój wybór: 2
-Podaj kwotę w PLN: 100
-Przeliczona kwota: 100.0 PLN na 2: 23.26
+3. GBP (British Pound)
+Your choice: 2
+Enter the amount in PLN PLN: 100
+Converted amount: 100.0 PLN to EUR: 23.26
 ```
 
-## Dodatkowe Uwagi
-- Kursy walut są zdefiniowane w kodzie źródłowym i mogą być dostosowane według aktualnych wartości.
-- Program obsługuje trzy główne waluty, ale może być rozbudowany o obsługę dodatkowych walut.
-- W przypadku wprowadzenia nieprawidłowej wartości (np. niepoprawnego wyboru waluty lub błędnej kwoty), program poinformuje użytkownika o błędzie.
+## Additional Notes
+- Currency exchange rates are defined in the source code and can be adjusted according to current values.
+- The program supports three major currencies but can be extended to support additional currencies.
+- In case of entering an incorrect value (e.g., incorrect currency choice or invalid amount), the program will inform the user about the error.

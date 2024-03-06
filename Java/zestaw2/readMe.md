@@ -1,37 +1,37 @@
-# Projekt Matematyczny
+# Mathematical Project
 
-## Opis
+## Description
 
-Projekt Matematyczny to zestaw klas Java, które implementują różne matematyczne obiekty i operacje. W ramach projektu zaimplementowane są klasy reprezentujące liczby ułamkowe, liczby zespolone, wektory w przestrzeni trójwymiarowej oraz wielomiany kwadratowe. Każda klasa zawiera metody umożliwiające podstawowe operacje matematyczne związane z danym obiektem.
+The Mathematical Project is a set of Java classes that implement various mathematical objects and operations. The project includes classes representing complex numbers, fractions, vectors in three-dimensional space, and quadratic polynomials. Each class contains methods for basic mathematical operations related to the respective object.
 
-## Klasy
+## Classes
 
-### 1. LiczbaZespolona
+### 1. ComplexNumber
 
-Klasa `LiczbaZespolona` reprezentuje liczbę zespoloną. Posiada metody umożliwiające dodawanie, odejmowanie, mnożenie i dzielenie liczb zespolonych, a także dostęp do ich części rzeczywistej i urojonej.
+The `ComplexNumber` class represents a complex number. It provides methods for addition, subtraction, multiplication, and division of complex numbers, as well as access to their real and imaginary parts.
 
-### 2. Ulamek
+### 2. Fraction
 
-Klasa `Ulamek` reprezentuje ułamek. Zawiera metody do wykonywania operacji matematycznych na ułamkach, takich jak dodawanie, odejmowanie, mnożenie, dzielenie, odwracanie, skracanie i obliczanie wartości dziesiętnej.
+The `Fraction` class represents a fraction. It includes methods for performing mathematical operations on fractions, such as addition, subtraction, multiplication, division, inversion, simplification, and calculation of the decimal value.
 
-### 3. Wektor
+### 3. Vector
 
-Klasa `Wektor` reprezentuje wektor w trójwymiarowej przestrzeni. Udostępnia metody do dodawania, odejmowania, obliczania iloczynu skalarnego, iloczynu wektorowego oraz obliczania długości wektora.
+The `Vector` class represents a vector in three-dimensional space. It provides methods for addition, subtraction, calculating the dot product, calculating the cross product, and calculating the length of the vector.
 
-### 4. WielomianKwadratowy
+### 4. QuadraticPolynomial
 
-Klasa `WielomianKwadratowy` reprezentuje wielomian kwadratowy o postaci ax^2 + bx + c. Posiada metody do dodawania, mnożenia i znajdowania miejsc zerowych tego rodzaju wielomianów.
+The `QuadraticPolynomial` class represents a quadratic polynomial of the form ax^2 + bx + c. It includes methods for addition, multiplication, and finding the roots of such polynomials.
 
-## Instrukcja użycia
+## Usage Instructions
 
-1. Sklonuj projekt do swojego środowiska programistycznego.
-2. Otwórz klasę `Main` i zobacz przykłady użycia różnych klas matematycznych obiektów.
-3. Uruchom program, aby zobaczyć wyniki działań na liczbach ułamkowych, liczbach zespolonych, wektorach i wielomianach kwadratowych.
+1. Clone the project to your development environment.
+2. Open the `Main` class and see examples of using different mathematical object classes.
+3. Run the program to see the results of operations on fractions, complex numbers, vectors, and quadratic polynomials.
 
-## Dodatkowe Uwagi
+## Additional Notes
 
-- Projekt został stworzony w języku Java.
-- Każda klasa posiada odpowiednie metody do przeprowadzenia podstawowych operacji matematycznych.
-- Pamiętaj o odpowiednim zarządzaniu błędami, takimi jak dzielenie przez zero czy odwracanie ułamka o zerowym liczniku.
-- W przypadku wielomianów kwadratowych, program oblicza miejsca zerowe, uwzględniając różne przypadki (dwa pierwiastki rzeczywiste, jeden pierwiastek rzeczywisty, brak pierwiastków rzeczywistych).
-- Korzystaj z metod `toString()` dla wygodnego wyświetlania wyników.
+- The project is created in Java.
+- Each class has appropriate methods for performing basic mathematical operations.
+- Remember to handle errors properly, such as division by zero or inversion of a fraction with a zero numerator.
+- For quadratic polynomials, the program calculates the roots, considering various cases (two real roots, one real root, no real roots).
+- Use the `toString()` methods for convenient display of results.

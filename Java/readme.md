@@ -1,24 +1,22 @@
-# Zajęcia Java
+# Java Projects
 
-Witaj w repozytorium zawierającym różnorodne projekty Java! Tutaj znajdziesz interesujące aplikacje i przykłady kodów, które mogą poszerzyć Twoją wiedzę na temat języka Java i programowania obiektowego. Wszystkie kody pochodzą z zajęć na studiach.
+Welcome to the repository containing various Java projects! Here you will find interesting applications and code examples that can broaden your knowledge of the Java language and object-oriented programming. All code comes from classes during studies.
 
+## How to Run Projects
 
-## Jak Uruchomić Projekty
+In each project folder, you will find a README.md file containing information on how to run the project. Make sure you meet all the requirements before attempting to run the project.
 
-W każdym folderze projektu znajdziesz plik README.md zawierający informacje na temat uruchamiania projektu. Upewnij się, że spełniasz wszystkie wymagania przed próbą uruchomienia projektu.
+## Requirements
 
-## Wymagania
-
-Upewnij się, że masz zainstalowane następujące narzędzia przed uruchomieniem projektów:
+Make sure you have the following tools installed before running the projects:
 
 - Java
-- Inne zależności, jeśli wymagane przez konkretne projekty
+- Any other dependencies required by specific projects
 
-## Kontakt
+## Contact
 
-Jeśli masz pytania, uwagi lub sugestie dotyczące któregokolwiek z projektów, proszę śmiało się skontaktować. Jestem otwarty na współpracę i feedback!
-
+If you have any questions, comments, or suggestions regarding any of the projects, please feel free to contact me. I am open to collaboration and feedback!
 
 ---
 
-**Życzymy przyjemnego korzystania z projektów!**
+**Enjoy using the projects!**

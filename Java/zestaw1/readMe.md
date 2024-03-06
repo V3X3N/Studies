@@ -1,44 +1,47 @@
-# Projekt Geometrii Obiektowej
+# Object-Oriented Geometry Project
 
-## Opis
+## Description
 
-Projekt Geometrii Obiektowej to program napisany w języku Java, który implementuje trzy klasy reprezentujące geometrię punktu, prostokąta i okręgu. Program wykonuje różnorodne operacje, takie jak przemieszczanie punktów, prostokątów i okręgów, obliczanie ich pól, sprawdzanie, czy punkt znajduje się wewnątrz prostokąta lub okręgu, oraz sprawdzanie przecięcia dwóch okręgów.
+The Object-Oriented Geometry Project is a Java program that implements three classes representing point, rectangle, and circle geometries. The program performs various operations such as moving points, rectangles, and circles, calculating their areas, checking if a point is inside a rectangle or circle, and checking the intersection of two circles.
 
-## Klasy
+## Classes
 
-### Punkt
-- Reprezentuje punkt na płaszczyźnie za pomocą współrzędnych x i y.
-- Metody:
-  - `toString`: Zwraca reprezentację punktu jako string.
-  - `przesun(dx, dy)`: Przesuwa punkt o podane wartości dx i dy.
+### Point
+- Represents a point on the plane using coordinates x and y.
+- Methods:
+  - `toString`: Returns the point representation as a string.
+  - `move(dx, dy)`: Moves the point by the specified values dx and dy.
 
-### Prostokat
-- Reprezentuje prostokąt o określonej długości, szerokości i wierzchołku (top-left vertex).
-- Metody:
-  - `toString`: Zwraca reprezentację prostokąta jako string.
-  - `przesun(u, v)`: Przesuwa prostokąt o podane wartości u i v.
-  - `zawiera(punkt)`: Sprawdza, czy punkt znajduje się wewnątrz prostokąta.
-  - `pole()`: Oblicza pole prostokąta.
+### Rectangle
+- Represents a rectangle with specified length, width, and top-left vertex.
+- Methods:
+  - `toString`: Returns the rectangle representation as a string.
+  - `move(u, v)`: Moves the rectangle by the specified values u and v.
+  - `contains(point)`: Checks if the point is inside the rectangle.
+  - `area()`: Calculates the area of the rectangle.
 
-### Okrag
-- Reprezentuje okrąg o określonym promieniu i środku.
-- Metody:
-  - `toString`: Zwraca reprezentację okręgu jako string.
-  - `przesun(u, v)`: Przesuwa okrąg o podane wartości u i v.
-  - `zawiera(punkt)`: Sprawdza, czy punkt znajduje się wewnątrz okręgu.
-  - `pole()`: Oblicza pole okręgu.
-  - `przecina(okrag)`: Sprawdza, czy dwa okręgi się przecinają.
+### Circle
+- Represents a circle with specified radius and center.
+- Methods:
+  - `toString`: Returns the circle representation as a string.
+  - `move(u, v)`: Moves the circle by the specified values u and v.
+  - `contains(point)`: Checks if the point is inside the circle.
+  - `area()`: Calculates the area of the circle.
+  - `intersects(circle)`: Checks if two circles intersect.
 
-## Instrukcja Użycia
+## Usage Instructions
 
-1. Uruchom program, uruchamiając klasę `Main`.
-2. Program stworzy różne instancje punktów, prostokątów i okręgów.
-3. Wykonaj różne operacje, takie jak przesuwanie, obliczanie pól i sprawdzanie zawierania.
-4. Zobacz wyniki w konsoli.
+1. Run the program by executing the `Main` class.
+2. The program will create various instances of points, rectangles, and circles.
+3. Perform various operations such as moving, calculating areas, and checking containment.
+4. View the results in the console.
 
-## Dodatkowe Uwagi
+## Additional Notes
 
-- Program został napisany w języku Java.
-- Użyto klas i metod obiektowo zorientowanego programowania do reprezentacji geometrii i operacji na obiektach.
-- Zachęcamy do eksperymentowania i modyfikowania kodu zgodnie z własnymi potrzebami.
+- The program is written in Java.
+- Object-oriented programming classes and methods are used to represent geometry and perform operations on objects.
+- Feel free to experiment and modify the code according to your needs.
 
+---
+
+**Enjoy exploring geometric concepts with this project!**
