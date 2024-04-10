@@ -1,0 +1,17 @@
+body {
+    background-color: #6495ED;
+    text-align: center;
+  }
+  
+  .container {
+    background-color: #b4c5e4;
+    margin: 20px auto;
+    padding: 20px;
+    max-width: 600px;
+    border-radius: 10px;
+  }
+  
+  .icon {
+    width: 50px;
+  }
+  
