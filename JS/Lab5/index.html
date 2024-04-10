@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zmiana rozmiaru zdjęcia</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1>Zmień rozmiar zdjęcia</h1>
+    <input type="file" id="fileInput" accept="image/*">
+    <br>
+    <label for="resolution">Wybierz rozdzielczość:</label>
+    <select id="resolution">
+        <option value="1920x1080">1080p</option>
+        <option value="1280x720">720p</option>
+        <option value="640x480">480p</option>
+    </select>
+    <button onclick="resizeImage()">Zmień rozmiar</button>
+    <div id="output"></div>
+    <script src="script.js"></script>
+</body>
+</html>

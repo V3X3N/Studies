@@ -6,21 +6,15 @@ This project provides a simple web application to display weather data fetched f
 
 To use this project, follow these steps:
 
-1. Clone the repository:
+1. Open the `index.html` file in your web browser.
 
-```bash
-git clone https://github.com/V3X3N/weather-data-analysis.git
-```
+2. Ensure you have obtained an API key from [OpenWeatherMap](https://openweathermap.org/api) and replace `'YOUR-API-HERE'` with your API key in the `script.js` file.
 
-2. Open the `index.html` file in your web browser.
+3. Replace `'YOUR-CITY-NAME'` in the `script.js` file with the name of the city for which you want to fetch weather data.
 
-3. Ensure you have obtained an API key from [OpenWeatherMap](https://openweathermap.org/api) and replace `'YOUR-API-HERE'` with your API key in the `script.js` file.
+4. Customize the styles in the `styles.css` file to match your preferences.
 
-4. Replace `'YOUR-CITY-NAME'` in the `script.js` file with the name of the city for which you want to fetch weather data.
-
-5. Customize the styles in the `styles.css` file to match your preferences.
-
-6. Run a local server if needed to view the application in the browser due to security restrictions when loading local files.
+5. Run a local server if needed to view the application in the browser due to security restrictions when loading local files.
 
 ## Features
 
