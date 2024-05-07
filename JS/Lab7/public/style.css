@@ -2,17 +2,17 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
+    background-color: #f4f4f4;
 }
 
-#chart-container {
+.container {
     width: 80%;
     margin: auto;
     text-align: center;
 }
 
-#candidates-container {
+#chart-container {
     margin-top: 20px;
-    text-align: center;
 }
 
 .candidate {
@@ -20,5 +20,48 @@ body {
     margin: 10px;
     padding: 10px;
     border: 1px solid #ccc;
+    background-color: #fff;
     cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.candidate:hover {
+    background-color: #f0f0f0;
+}
+
+#vote-form {
+    margin-top: 20px;
+}
+
+#key-input,
+#candidate-select {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-right: 10px;
+    font-size: 16px;
+}
+
+#vote-button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: #007bff;
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#vote-button:hover {
+    background-color: #0056b3;
+}
+
+.hidden {
+    display: none;
+}
+
+#warning-message {
+    color: red;
+    margin-top: 10px;
 }
