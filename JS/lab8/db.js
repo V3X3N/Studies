@@ -28,30 +28,6 @@ connection.query(createCandidatesTable, (err, results, fields) => {
         return;
     }
     console.log('Tabela kandydatów została utworzona lub już istnieje');
-
-    // Dodajemy przykładowych kandydatów do tabeli, jeśli tabela jest pusta
-    connection.query('SELECT * FROM candidates', (err, results) => {
-        if (err) {
-            console.error('Błąd podczas pobierania kandydatów:', err);
-            return;
-        }
-        if (results.length === 0) {
-            const insertQuery = `INSERT INTO candidates (name) VALUES ?`;
-            const candidatesData = [
-                ['Kandydat 1'],
-                ['Kandydat 2'],
-                ['Kandydat 3'],
-                ['Kandydat 4']
-            ];
-            connection.query(insertQuery, [candidatesData], (err, results) => {
-                if (err) {
-                    console.error('Błąd podczas dodawania przykładowych kandydatów:', err);
-                } else {
-                    console.log('Dodano przykładowych kandydatów do tabeli kandydatów.');
-                }
-            });
-        }
-    });
 });
 
 // Inicjalizacja kluczy do głosowania w bazie danych
@@ -85,6 +61,32 @@ async function getUnusedVotingKey() {
     });
 }
 
+// Oznaczanie klucza jako użyty w bazie danych
+async function markKeyAsUsed(keyValue) {
+    return new Promise((resolve, reject) => {
+        connection.query('UPDATE voting_keys SET used = TRUE WHERE key_value = ?', [keyValue], (err, results) => {
+            if (err) {
+                reject(err);
+            } else {
+                resolve();
+            }
+        });
+    });
+}
+
+// Aktualizacja liczby głosów dla kandydata w bazie danych
+async function updateCandidateVotes(candidateIndex) {
+    return new Promise((resolve, reject) => {
+        connection.query('UPDATE candidates SET votes = votes + 1 WHERE id = ?', [candidateIndex + 1], (err, results) => {
+            if (err) {
+                reject(err);
+            } else {
+                resolve();
+            }
+        });
+    });
+}
+
 // Pobieranie kandydatów z bazy danych
 async function getCandidates() {
     return new Promise((resolve, reject) => {
@@ -102,5 +104,7 @@ async function getCandidates() {
 module.exports = {
     initializeVotingKeys,
     getUnusedVotingKey,
+    markKeyAsUsed,
+    updateCandidateVotes,
     getCandidates
 };
