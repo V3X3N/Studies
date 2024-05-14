@@ -36,7 +36,7 @@ wsServer.on('request', async (request) => {
                     const unusedKey = await db.getUnusedVotingKey();
                     if (unusedKey) {
                         await db.markKeyAsUsed(unusedKey.key_value);
-                        await db.updateCandidateVotes(candidates[candidateIndex].id, candidates[candidateIndex].votes + 1);
+                        await db.updateCandidateVotes(candidateIndex);
                         candidates[candidateIndex].votes++;
                         wsServer.broadcast(JSON.stringify(candidates));
                     } else {
