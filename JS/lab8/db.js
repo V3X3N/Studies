@@ -1,4 +1,5 @@
 // db.js
+
 const mysql = require('mysql');
 
 const connection = mysql.createConnection({
@@ -61,10 +62,10 @@ async function getUnusedVotingKey() {
     });
 }
 
-// Oznaczanie klucza jako użyty w bazie danych
+// Oznaczanie klucza jako użyty i usuwanie go z bazy danych
 async function markKeyAsUsed(keyValue) {
     return new Promise((resolve, reject) => {
-        connection.query('UPDATE voting_keys SET used = TRUE WHERE key_value = ?', [keyValue], (err, results) => {
+        connection.query('DELETE FROM voting_keys WHERE key_value = ?', [keyValue], (err, results) => {
             if (err) {
                 reject(err);
             } else {

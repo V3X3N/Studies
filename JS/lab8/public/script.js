@@ -1,4 +1,5 @@
 // script.js
+
 const websocket = new WebSocket('ws://localhost:3000');
 
 websocket.onmessage = (event) => {
@@ -66,6 +67,16 @@ document.getElementById('vote-button').addEventListener('click', () => {
         if (key !== '') {
             websocket.send(`${key}|${candidateIndex}`);
             selectElement.selectedIndex = 0;
+            // Dodajmy tutaj wywołanie markKeyAsUsed
+            fetch(`/markKeyAsUsed/${key}`)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.json();
+                })
+                .then(data => console.log(data))
+                .catch(error => console.error('Error:', error));
         } else {
             console.log("Wprowadź klucz głosowania przed oddaniem głosu.");
         }

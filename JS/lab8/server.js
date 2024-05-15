@@ -1,4 +1,5 @@
 // server.js
+
 const express = require('express');
 const http = require('http');
 const WebSocket = require('websocket').server;
@@ -53,6 +54,18 @@ wsServer.on('request', async (request) => {
 });
 
 app.use(express.static('public'));
+
+// Endpoint obsługujący oznaczanie klucza jako użyty
+app.get('/markKeyAsUsed/:key', async (req, res) => {
+    const key = req.params.key;
+    try {
+        await db.markKeyAsUsed(key);
+        res.json({ success: true, message: 'Klucz został oznaczony jako użyty.' });
+    } catch (error) {
+        console.error("Błąd podczas oznaczania klucza jako użyty:", error);
+        res.status(500).json({ success: false, message: 'Wystąpił błąd podczas oznaczania klucza jako użyty.' });
+    }
+});
 
 const PORT = process.env.PORT || 3000;
 server.listen(PORT, async () => {
