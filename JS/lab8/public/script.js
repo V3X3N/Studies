@@ -1,8 +1,8 @@
 // script.js
 
-const websocket = new WebSocket('ws://localhost:3000');
+const websocket = new WebSocket('ws://localhost:3000'); // Deklaracja stałej z użyciem 'const'
 
-websocket.onmessage = (event) => {
+websocket.onmessage = (event) => { // Wyrażenie strzałkowe dla funkcji obsługi zdarzenia
     const data = JSON.parse(event.data);
     updateChart(data);
     updateCandidates(data);
@@ -12,7 +12,7 @@ function updateCandidates(data) {
     const container = document.getElementById('candidates-container');
     container.innerHTML = '';
 
-    data.forEach((candidate, index) => {
+    data.forEach((candidate, index) => { // Wyrażenie strzałkowe dla funkcji zwrotnej forEach
         const candidateElement = document.createElement('div');
         candidateElement.classList.add('candidate');
         candidateElement.textContent = `${candidate.name}: ${candidate.votes} głosów`;
@@ -21,10 +21,10 @@ function updateCandidates(data) {
 }
 
 function updateChart(data) {
-    const labels = data.map(candidate => candidate.name);
-    const votes = data.map(candidate => candidate.votes);
+    const labels = data.map(candidate => candidate.name); // Metoda tablicowa 'map' i wyrażenie strzałkowe
+    const votes = data.map(candidate => candidate.votes); // Metoda tablicowa 'map' i wyrażenie strzałkowe
 
-    if (!chart) {
+    if (!chart) { // Nowy zapis skrócony dla sprawdzenia wartości null lub undefined
         const ctx = document.getElementById('vote-chart').getContext('2d');
         chart = new Chart(ctx, {
             type: 'bar',
@@ -58,7 +58,7 @@ function updateChart(data) {
 
 let chart;
 
-document.getElementById('vote-button').addEventListener('click', () => {
+document.getElementById('vote-button').addEventListener('click', () => { // Metoda 'addEventListener' z użyciem funkcji strzałkowej
     const selectElement = document.getElementById('candidate-select');
     const selectedIndex = selectElement.selectedIndex;
     if (selectedIndex !== 0) {
@@ -85,6 +85,6 @@ document.getElementById('vote-button').addEventListener('click', () => {
     }
 });
 
-websocket.onclose = () => {
+websocket.onclose = () => { // Wyrażenie strzałkowe dla funkcji obsługi zdarzenia
     document.getElementById('warning-message').classList.remove('hidden');
 };
